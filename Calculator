@@ -1,0 +1,51 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Calculator {
+    public static String calc(String input) throws IOException {
+        String[] tokens = input.split(" ");
+
+
+        if (tokens.length != 3)
+            throw new IOException();
+
+        short num1 = Short.parseShort(tokens[0]);
+        short num2 = Short.parseShort(tokens[2]);
+        char operator = tokens[1].charAt(0);
+        short result = 0;
+        if (num1 > 10)
+            throw new IOException();
+        if (num2 > 10)
+            throw new IOException();
+        switch (operator) {
+            case '+':
+                result = (short) (num1 + num2);
+                break;
+            case '-':
+                result = (short) (num1 - num2);
+                break;
+            case '*':
+                result = (short) (num1*num2);
+                break;
+            case '/':
+                result = (short) (num1 / num2);
+                break;
+            default: throw new IOException();
+
+        }
+
+        return String.valueOf(result);
+    }
+
+    public static void main(String[] args) throws IOException {
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите ваш пример:");
+            String input = scanner.nextLine();
+
+            String result = calc(input);
+            System.out.println("Результат: " + result);
+
+
+    }
+}
